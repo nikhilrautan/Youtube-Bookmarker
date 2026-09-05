@@ -1,0 +1,18 @@
+.yt-bookmarker-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.yt-bookmarker-btn svg {
+  pointer-events: none;
+}
+
+.yt-bookmarker-btn.is-success svg path {
+  fill: #3ddc84;
+}
+
+.yt-bookmarker-btn.is-error svg path {
+  fill: #ff4d4d;
+}

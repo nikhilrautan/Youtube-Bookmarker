@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Youtube Bookmarker</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="brand">
+        <span class="logo" aria-hidden="true">▶</span>
+        <div>
+          <h1>Youtube Bookmarker</h1>
+          <p class="subtitle">Save the moment. Jump back instantly.</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="save-card">
+      <div id="now-playing" class="now-playing">Open a YouTube video to bookmark a timestamp.</div>
+      <button id="save-btn" class="primary-btn" type="button" disabled>
+        Bookmark current timestamp
+      </button>
+      <p id="status" class="status" role="status"></p>
+    </section>
+
+    <section class="list-header">
+      <h2>Saved timestamps</h2>
+      <input id="search" type="search" placeholder="Search videos..." />
+    </section>
+
+    <main id="bookmark-list" class="bookmark-list"></main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
