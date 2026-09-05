@@ -142,20 +142,30 @@
     }, 900);
   }
 
-  function injectPlayerButton() {
-    const controls = document.querySelector(".ytp-right-controls");
-    if (!controls) return;
+function injectPlayerButton() {
+  try {
+    const controls = getPlayerControls();
+    if (!controls || !controls.isConnected) return;
 
     const button = createPlayerButton();
-    if (button.parentElement === controls) return;
-
     const settings = controls.querySelector(".ytp-settings-button");
-    if (settings) {
-      controls.insertBefore(button, settings);
-    } else {
-      controls.prepend(button);
+    const parent = settings?.parentElement || controls;
+
+    if (!parent || !parent.isConnected) return;
+
+    if (button.parentElement === parent) {
+      if (!settings || button.nextElementSibling === settings) return;
     }
+
+    if (settings && settings.parentNode === parent) {
+      parent.insertBefore(button, settings);
+    } else {
+      parent.appendChild(button);
+    }
+  } catch (err) {
+    console.debug("yt-bookmarker: injectPlayerButton skipped", err);
   }
+}
 
   const observer = new MutationObserver(() => injectPlayerButton());
   observer.observe(document.documentElement, { childList: true, subtree: true });
